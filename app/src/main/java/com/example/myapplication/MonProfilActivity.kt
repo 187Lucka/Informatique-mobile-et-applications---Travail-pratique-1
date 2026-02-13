@@ -32,5 +32,10 @@ class MonProfilActivity : AppCompatActivity() {
             binding.textViewDateNaissance.text = "Date de naissance : ${dateFormat.format(it.dateNaissance)}"
             binding.textViewIdul.text = "IDUL : ${it.idul}"
         }
+
+        // Bouton Fermer
+        binding.buttonFermerProfil.setOnClickListener {
+            finish()
+        }
     }
 }

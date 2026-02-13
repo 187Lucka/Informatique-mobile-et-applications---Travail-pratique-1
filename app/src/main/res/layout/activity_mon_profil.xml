@@ -35,6 +35,13 @@
         android:layout_height="wrap_content"
         android:text="IDUL : "
         android:textSize="18sp"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="32dp" />
+
+    <Button
+        android:id="@+id/buttonFermerProfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fermer"
+        android:layout_marginTop="16dp" />
 
 </LinearLayout>

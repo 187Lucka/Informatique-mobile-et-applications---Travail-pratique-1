@@ -26,6 +26,11 @@ class DepartementActivity : AppCompatActivity() {
             loadUrl(url)
         }
 
+        // Bouton Fermer
+        binding.buttonFermerDepartement.setOnClickListener {
+            finish()
+        }
+
         // Gérer le bouton retour
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {

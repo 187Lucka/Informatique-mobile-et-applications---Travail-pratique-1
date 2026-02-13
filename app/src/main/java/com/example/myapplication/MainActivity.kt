@@ -10,7 +10,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var profil: Profil
 
-    // URLs à charger
     private val urlDepartement = "https://www.gelgif.ulaval.ca/"
     private val urlUniversiteLaval = "https://maps.google.com/?q=Université+Laval,+Quebec"
 
@@ -19,17 +18,15 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialiser l'objet Profil avec vos informations personnelles
-        // IMPORTANT: Remplacez ces valeurs par vos vraies informations
         val dateNaissance = Calendar.getInstance().apply {
-            set(2000, Calendar.JANUARY, 1) // Remplacez par votre vraie date
+            set(2004, Calendar.OCTOBER, 19)
         }.time
 
         profil = Profil(
-            nom = "Nom",           // Remplacez par votre nom
-            prenom = "Prénom",     // Remplacez par votre prénom
+            nom = "Valtriani",
+            prenom = "Lucka",
             dateNaissance = dateNaissance,
-            idul = "IDUL"          // Remplacez par votre IDUL
+            idul = "luval50"
         )
 
         // Afficher le nom et prénom dans le TextView

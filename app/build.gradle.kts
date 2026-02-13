@@ -52,9 +52,6 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
 
-    // Google Maps
-    implementation("com.google.android.gms:play-services-maps:18.2.0")
-
     // AppCompat for traditional views
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")

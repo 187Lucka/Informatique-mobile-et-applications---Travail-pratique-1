@@ -1,47 +1,57 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.myapplication.ui.theme.MyApplicationTheme
+import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.databinding.ActivityMainBinding
+import java.util.Calendar
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var profil: Profil
+
+    // URLs à charger
+    private val urlDepartement = "https://www.gelgif.ulaval.ca/"
+    private val urlUniversiteLaval = "https://maps.google.com/?q=Université+Laval,+Quebec"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            MyApplicationTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // Initialiser l'objet Profil avec vos informations personnelles
+        // IMPORTANT: Remplacez ces valeurs par vos vraies informations
+        val dateNaissance = Calendar.getInstance().apply {
+            set(2000, Calendar.JANUARY, 1) // Remplacez par votre vraie date
+        }.time
+
+        profil = Profil(
+            nom = "Nom",           // Remplacez par votre nom
+            prenom = "Prénom",     // Remplacez par votre prénom
+            dateNaissance = dateNaissance,
+            idul = "IDUL"          // Remplacez par votre IDUL
+        )
+
+        // Afficher le nom et prénom dans le TextView
+        binding.textViewName.text = "${profil.prenom} ${profil.nom}"
+
+        // Configurer les boutons
+        binding.buttonUniversiteLaval.setOnClickListener {
+            val intent = Intent(this, UniversiteLavalActivity::class.java)
+            intent.putExtra("URL", urlUniversiteLaval)
+            startActivity(intent)
         }
-    }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+        binding.buttonDepartement.setOnClickListener {
+            val intent = Intent(this, DepartementActivity::class.java)
+            intent.putExtra("URL", urlDepartement)
+            startActivity(intent)
+        }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MyApplicationTheme {
-        Greeting("Android")
+        binding.buttonMonProfil.setOnClickListener {
+            val intent = Intent(this, MonProfilActivity::class.java)
+            intent.putExtra("PROFIL", profil)
+            startActivity(intent)
+        }
     }
 }

@@ -21,21 +21,21 @@
         android:id="@+id/buttonUniversiteLaval"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Université Laval"
+        android:text="@string/universite_laval"
         android:layout_marginBottom="16dp" />
 
     <Button
         android:id="@+id/buttonDepartement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Département de génie électrique et de génie informatique"
+        android:text="@string/departement_gelgif"
         android:layout_marginBottom="16dp" />
 
     <Button
         android:id="@+id/buttonMonProfil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mon Profil"
+        android:text="@string/mon_profil"
         android:layout_marginBottom="16dp" />
 
 </LinearLayout>

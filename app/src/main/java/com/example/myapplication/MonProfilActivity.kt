@@ -23,17 +23,15 @@ class MonProfilActivity : AppCompatActivity() {
             intent.getParcelableExtra("PROFIL")
         }
 
-        // Afficher les informations du profil
         profil?.let {
             val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.CANADA_FRENCH)
 
-            binding.textViewPrenom.text = "Prénom : ${it.prenom}"
-            binding.textViewNom.text = "Nom : ${it.nom}"
-            binding.textViewDateNaissance.text = "Date de naissance : ${dateFormat.format(it.dateNaissance)}"
-            binding.textViewIdul.text = "IDUL : ${it.idul}"
+            binding.textViewPrenom.text = getString(R.string.prenom_label, it.prenom)
+            binding.textViewNom.text = getString(R.string.nom_label, it.nom)
+            binding.textViewDateNaissance.text = getString(R.string.date_naissance_label, dateFormat.format(it.dateNaissance))
+            binding.textViewIdul.text = getString(R.string.idul_label, it.idul)
         }
 
-        // Bouton Fermer
         binding.buttonFermerProfil.setOnClickListener {
             finish()
         }

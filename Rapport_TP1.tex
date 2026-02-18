@@ -1,0 +1,162 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{float}
+
+\geometry{a4paper, margin=2.5cm}
+
+\title{Rapport de Travail Pratique 1\\Informatique Mobile et Applications}
+\author{Votre Nom}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Section 1 : Installation et Configuration de l'Environnement}
+
+Cette section documente les étapes d'installation et de configuration de l'environnement de développement Android.
+
+\subsection*{Étape 1 : Installation d'Android Studio}
+\begin{figure}[H]
+    \centering
+    % Remplacez 'Capture1.png' par le nom de votre fichier image
+    % \includegraphics[width=0.8\textwidth]{Capture1.png}
+    \fbox{\begin{minipage}{0.8\textwidth}
+        \centering
+        \vspace{2cm}
+        [Insérer ici la capture d'écran de l'installation d'Android Studio]
+        \vspace{2cm}
+    \end{minipage}}
+    \caption{Installation Android Studio}
+\end{figure}
+
+\subsection*{Étape 2 : Installation de l'émulateur}
+\begin{figure}[H]
+    \centering
+    % Remplacez 'Capture2.png' par le nom de votre fichier image
+    % \includegraphics[width=0.8\textwidth]{Capture2.png}
+    \fbox{\begin{minipage}{0.8\textwidth}
+        \centering
+        \vspace{2cm}
+        [Insérer ici la capture d'écran de l'installation de l'émulateur]
+        \vspace{2cm}
+    \end{minipage}}
+    \caption{Installation de l'émulateur}
+\end{figure}
+
+\subsection*{Étape 3 : Configuration du SDK Android (SDK Tools)}
+Capture d'écran de la page de paramètres Android Studio, section Android SDK, onglet "SDK Tools".
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{screen/SDKTools.png}
+    \caption{Configuration des SDK Tools}
+\end{figure}
+
+\subsection*{Étape 4 : Création et démarrage de l'AVD}
+Capture d'écran du simulateur démarré via l'Android Virtual Device Manager.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{screen/DeviceManager.png}
+    \caption{Simulateur Android en cours d'exécution}
+\end{figure}
+
+\subsection*{Étape 5 : Exécution de l'Application (Section 2)}
+Capture d'écran de l'application réalisée fonctionnant dans le simulateur.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{screen/AppHome.png}
+    \caption{Application TP1 - Menu Principal}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{screen/AppMap.png}
+    \caption{Activité Carte (Département)}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{screen/AppUlaval.png}
+    \caption{Activité Université Laval}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{screen/AppInfo.png}
+    \caption{Activité Mon Profil}
+\end{figure}
+
+\newpage
+
+\section*{Section 2 : Réalisation et Analyse de l'Application}
+
+\subsection{Introduction}
+Cette section détaille l'analyse du projet Android réalisé, la validation de ses fonctionnalités principales et les corrections apportées pour respecter les bonnes pratiques.
+
+\subsection{Validation de l'Implémentation}
+
+L'analyse du code source a permis de confirmer la présence et le bon fonctionnement des éléments clés demandés :
+
+\subsection{Navigation et Activités}
+\begin{itemize}
+    \item \textbf{MainActivity} : Sert de point d'entrée avec un menu fonctionnel redirigeant vers trois activités distinctes.
+    \item \textbf{MonProfilActivity} : Récupère et affiche correctement les données d'un objet \texttt{Profil}.
+    \item \textbf{DepartementActivity} : Utilise un \texttt{WebView} pour afficher une page web externe, avec une gestion correcte de la navigation interne (bouton retour).
+    \item \textbf{UniversiteLavalActivity} : Affiche une carte, initialement via une iframe intégrée.
+\end{itemize}
+
+\subsection{Gestion des Données}
+La classe \texttt{Profil} est correctement implémentée en utilisant l'interface \texttt{Parcelable} (via l'annotation \texttt{@Parcelize}), permettant le passage d'objets complexes entre les activités via les \texttt{Intent}.
+
+\section{Corrections et Améliorations Apportées}
+
+Plusieurs modifications ont été effectuées pour améliorer la qualité du code et corriger des comportements non conformes.
+
+\subsection{1. Extraction des Chaînes de Caractères (Internationalisation)}
+Toutes les chaînes de caractères "en dur" (hardcoded strings) ont été extraites vers le fichier de ressources \texttt{strings.xml}.
+\begin{itemize}
+    \item \textbf{Avant} : Textes directement dans le code Kotlin ou les layouts XML (ex: "Prénom : ", "Fermer").
+    \item \textbf{Après} : Utilisation de références \texttt{@string/resource\_name} et de la méthode \texttt{getString()}.
+\end{itemize}
+
+\subsection{2. Correction de UniversiteLavalActivity}
+L'implémentation initiale ignorait l'URL passée en paramètre par l'activité principale.
+\begin{itemize}
+    \item \textbf{Problème} : L'activité chargeait un contenu HTML statique interne, rendant le paramètre \texttt{URL} de l'Intent inutile.
+    \item \textbf{Correction} : Le code a été modifié pour récupérer l'URL de l'Intent et l'injecter dynamiquement dans le WebView.
+    \item \textbf{Mise à jour} : L'URL passée depuis \texttt{MainActivity} a été mise à jour vers un lien d'intégration Google Maps (embed) valide.
+\end{itemize}
+
+\subsection{Corrections et Améliorations Apportées}
+
+Pour assurer la qualité du projet, plusieurs modifications ont été effectuées.
+
+\subsubsection*{1. Extraction des Chaînes de Caractères (Internationalisation)}
+Toutes les chaînes de caractères "en dur" (hardcoded strings) ont été extraites vers le fichier de ressources \texttt{strings.xml}.
+\begin{itemize}
+    \item \textbf{Avant} : Textes directement dans le code Kotlin ou les layouts XML (ex: "Prénom : ", "Fermer").
+    \item \textbf{Après} : Utilisation de références \texttt{@string/resource\_name} et de la méthode \texttt{getString()}.
+\end{itemize}
+
+\subsubsection*{2. Correction de UniversiteLavalActivity}
+L'implémentation initiale ignorait l'URL passée en paramètre par l'activité principale.
+\begin{itemize}
+    \item \textbf{Problème} : L'activité chargeait un contenu HTML statique interne, rendant le paramètre \texttt{URL} de l'Intent inutile.
+    \item \textbf{Correction} : Le code a été modifié pour récupérer l'URL de l'Intent et l'injecter dynamiquement dans le WebView.
+    \item \textbf{Mise à jour} : L'URL passée depuis \texttt{MainActivity} a été mise à jour vers un lien d'intégration Google Maps (embed) valide.
+\end{itemize}
+
+\subsubsection*{3. Nettoyage du Code}
+Les commentaires superflus ou redondants ont été supprimés pour améliorer la lisibilité des fichiers sources, notamment dans \texttt{UniversiteLavalActivity.kt} et \texttt{MonProfilActivity.kt}.
+
+\section*{Conclusion}
+Le projet est désormais fonctionnel, respecte les consignes de structure et suit les bonnes pratiques de gestion des ressources Android. Les fonctionnalités de navigation, d'affichage Web et de passage de données sont validées.
+
+\end{document}
